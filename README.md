@@ -6,7 +6,7 @@ A live preview mermaid editor.
 
 ## Download
 - [Mac](https://gw.alipayobjects.com/os/bmw-prod/1124bb24-676a-43f4-8821-b8ebbad10086.dmg)
-- [Win]()
+- Win
 
 ## Reference
 https://mermaid-js.github.io/mermaid/#/
