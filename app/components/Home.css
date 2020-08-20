@@ -6,22 +6,26 @@
   position: relative;
 }
 
-.editor {
-  width: 1000px;
-  height: 100%;
-}
-
 .mermaid {
   background-color: #f6f8fa;
-  width: 50vw;
+  /* width: 50vw;
+   */
+  flex: 1;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.helper {
+  position: absolute;
+  left: 6px;
+  bottom: 10px;
+  z-index: 100;
+}
+
 .operation {
   position: absolute;
-  right: 20px;
-  bottom: 20px
+  right: 6px;
+  bottom: 10px
 }
