@@ -8,8 +8,10 @@ import { Button, Space, Dropdown, Menu } from 'antd';
 import { DownloadOutlined, BarsOutlined } from '@ant-design/icons';
 import 'ace-builds/src-noconflict/mode-markdown';
 import 'ace-builds/src-noconflict/theme-monokai';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { MenuInfo } from 'rc-menu/lib/interface';
 
-import * as diagramTpl from './DiagramTpl';
+import diagramTpl from './DiagramTpl';
 
 import styles from './Home.css';
 
@@ -17,11 +19,11 @@ const { SubMenu } = Menu;
 
 export default function Home(): JSX.Element {
   const [mermaidSVG, setMermaidSVG] = useState<string>('');
-  const [code, setCode] = useState<string>('');
+  const [text, setText] = useState<string>('');
 
   const renderMermaid = _.debounce((code: string) => {
     mermaid.mermaidAPI.render('mermaid', code, (svg) => {
-      setCode(code);
+      setText(code);
       setMermaidSVG(svg);
     });
   }, 1000);
@@ -33,7 +35,7 @@ export default function Home(): JSX.Element {
     saveAs(blob, 'uml.svg');
   };
 
-  const handleClickHelperMenu = ({ key }: { key: string }) => {
+  const handleClickHelperMenu = ({ key }: MenuInfo) => {
     if (key === 'helperDoc') {
       shell.openExternal(
         'https://mermaid-js.github.io/mermaid/#/?id=diagrams-that-mermaid-can-render'
@@ -48,8 +50,8 @@ export default function Home(): JSX.Element {
       <SubMenu title="插入模板">
         <Menu.Item key="flowchart">Flowchart</Menu.Item>
         <Menu.Item key="sequenceDiagram">Sequence Diagram</Menu.Item>
-        <Menu.Item key="ganttDiagram">Gantt Diagram</Menu.Item>
         <Menu.Item key="classDiagram">Class Diagram</Menu.Item>
+        <Menu.Item key="ganttDiagram">Gantt Diagram</Menu.Item>
         <Menu.Item key="gitGraph">Git Graph</Menu.Item>
         <Menu.Item key="entityRelationshipDiagram">
           Entity Relationship Diagram
@@ -65,7 +67,7 @@ export default function Home(): JSX.Element {
       <AceEditor
         mode="markdown"
         theme="monokai"
-        value={code}
+        value={text}
         onChange={renderMermaid}
         className={styles.editor}
         width="512px"
@@ -89,7 +91,7 @@ export default function Home(): JSX.Element {
       />
       <Space className={styles.helper}>
         <Dropdown overlay={menu} placement="topLeft" arrow>
-          <Button icon={<BarsOutlined />} shape="circle" type="primary" />
+          <Button icon={<BarsOutlined />} type="primary" />
         </Dropdown>
       </Space>
       <Space className={styles.operation}>

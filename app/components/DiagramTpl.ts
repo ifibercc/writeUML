@@ -1,11 +1,10 @@
-export const flowchart = `graph TD;
+const flowchart = `graph TD;
   A-->B;
   A-->C;
   B-->D;
   C-->D;
 `;
-
-export const sequenceDiagram = `sequenceDiagram
+const sequenceDiagram = `sequenceDiagram
   participant Alice
   participant Bob
   Alice->>John: Hello John, how are you?
@@ -17,8 +16,7 @@ export const sequenceDiagram = `sequenceDiagram
   John->>Bob: How about you?
   Bob-->>John: Jolly good!
 `;
-
-export const ganttDiagram = `gantt
+const ganttDiagram = `gantt
   dateFormat  YYYY-MM-DD
   title Adding GANTT diagram to mermaid
   excludes weekdays 2014-01-10
@@ -29,8 +27,7 @@ export const ganttDiagram = `gantt
   Future task               :         des3, after des2, 5d
   Future task2               :         des4, after des3, 5d
 `;
-
-export const classDiagram = `classDiagram
+const classDiagram = `classDiagram
   Class01 <|-- AveryLongClass : Cool
   Class03 *-- Class04
   Class05 o-- Class06
@@ -45,8 +42,7 @@ export const classDiagram = `classDiagram
   Class01 : int gorilla
   Class08 <--> C2: Cool label
 `;
-
-export const gitGraph = `gitGraph:
+const gitGraph = `gitGraph:
 options
 {
     "nodeSpacing": 150,
@@ -63,14 +59,12 @@ commit
 commit
 merge newbranch
 `;
-
-export const entityRelationshipDiagram = `erDiagram
+const entityRelationshipDiagram = `erDiagram
   CUSTOMER ||--o{ ORDER : places
   ORDER ||--|{ LINE-ITEM : contains
   CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
 `;
-
-export const userJourneyDiagram = `journey
+const userJourneyDiagram = `journey
   title My working day
   section Go to work
     Make tea: 5: Me
@@ -80,3 +74,13 @@ export const userJourneyDiagram = `journey
     Go downstairs: 5: Me
     Sit down: 5: Me
 `;
+const tpl: { [index: string]: string } = {
+  flowchart,
+  sequenceDiagram,
+  ganttDiagram,
+  classDiagram,
+  gitGraph,
+  entityRelationshipDiagram,
+  userJourneyDiagram,
+};
+export default tpl;
