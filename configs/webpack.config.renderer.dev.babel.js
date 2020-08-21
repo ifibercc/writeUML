@@ -14,6 +14,8 @@ import { spawn, execSync } from 'child_process';
 import baseConfig from './webpack.config.base';
 import CheckNodeEnv from '../internals/scripts/CheckNodeEnv';
 
+const MONACO_DIR = path.resolve(__dirname, './node_modules/monaco-editor');
+
 // When an ESLint server is running, we can't set the NODE_ENV so we'll check if it's
 // at the dev webpack config is not accidentally run in a production environment
 if (process.env.NODE_ENV === 'production') {
@@ -79,6 +81,7 @@ export default merge(baseConfig, {
       },
       {
         test: /^((?!\.global).)*\.css$/,
+        exclude: MONACO_DIR,
         use: [
           {
             loader: 'style-loader',
@@ -86,14 +89,19 @@ export default merge(baseConfig, {
           {
             loader: 'css-loader',
             options: {
-              modules: {
-                localIdentName: '[name]__[local]__[hash:base64:5]',
-              },
+              // modules: {
+              //   localIdentName: '[name]__[local]__[hash:base64:5]',
+              // },
               sourceMap: true,
               importLoaders: 1,
             },
           },
         ],
+      },
+      {
+        test: /\.css$/,
+        include: MONACO_DIR,
+        use: ['style-loader', 'css-loader'],
       },
       // SASS support - compile all .global.scss files and pipe it to style.css
       {
@@ -123,9 +131,6 @@ export default merge(baseConfig, {
           {
             loader: 'typings-for-css-modules-loader',
             options: {
-              modules: {
-                localIdentName: '[name]__[local]__[hash:base64:5]',
-              },
               sourceMap: true,
               importLoaders: 1,
             },

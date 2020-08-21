@@ -16,6 +16,8 @@ import DeleteSourceMaps from '../internals/scripts/DeleteSourceMaps';
 CheckNodeEnv('production');
 DeleteSourceMaps();
 
+const MONACO_DIR = path.resolve(__dirname, './node_modules/monaco-editor');
+
 export default merge(baseConfig, {
   devtool: process.env.DEBUG_PROD === 'true' ? 'source-map' : 'none',
 
@@ -58,6 +60,7 @@ export default merge(baseConfig, {
       // Pipe other styles through css modules and append to style.css
       {
         test: /^((?!\.global).)*\.css$/,
+        exclude: MONACO_DIR,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -65,13 +68,18 @@ export default merge(baseConfig, {
           {
             loader: 'css-loader',
             options: {
-              modules: {
-                localIdentName: '[name]__[local]__[hash:base64:5]',
-              },
+              // modules: {
+              //   localIdentName: '[name]__[local]__[hash:base64:5]',
+              // },
               sourceMap: true,
             },
           },
         ],
+      },
+      {
+        test: /\.css$/,
+        include: MONACO_DIR,
+        use: ['style-loader', 'css-loader'],
       },
       // Add SASS support  - compile all .global.scss files and pipe it to style.css
       {

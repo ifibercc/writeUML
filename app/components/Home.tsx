@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { shell } from 'electron';
 import mermaid from 'mermaid';
-import AceEditor from 'react-ace';
+import MonacoEditor from 'react-monaco-editor';
 import _ from 'lodash';
 import { saveAs } from 'file-saver';
 import { Button, Space, Dropdown, Menu } from 'antd';
 import { DownloadOutlined, BarsOutlined } from '@ant-design/icons';
-import 'ace-builds/src-noconflict/mode-markdown';
-import 'ace-builds/src-noconflict/theme-monokai';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { MenuInfo } from 'rc-menu/lib/interface';
 
 import diagramTpl from './DiagramTpl';
+import initEditor from './initEditor';
 
-import styles from './Home.css';
+import './Home.css';
 
 const { SubMenu } = Menu;
 
@@ -63,38 +62,30 @@ export default function Home(): JSX.Element {
   );
 
   return (
-    <div className={styles.container} data-tid="container">
-      <AceEditor
-        mode="markdown"
-        theme="monokai"
-        value={text}
-        onChange={renderMermaid}
-        className={styles.editor}
+    <div className="container" data-tid="container">
+      <MonacoEditor
         width="512px"
         height="100vh"
-        editorProps={{ $blockScrolling: true }}
-        fontSize={14}
-        showPrintMargin
-        showGutter
-        highlightActiveLine
-        setOptions={{
-          enableBasicAutocompletion: true,
-          enableLiveAutocompletion: true,
-          enableSnippets: true,
-          showLineNumbers: true,
+        language="mermaid"
+        theme="monokai"
+        value={text}
+        options={{
+          minimap: {
+            enabled: false,
+          },
           tabSize: 2,
+          fontSize: 14,
         }}
+        onChange={renderMermaid}
+        editorWillMount={initEditor}
       />
-      <div
-        className={styles.mermaid}
-        dangerouslySetInnerHTML={{ __html: mermaidSVG }}
-      />
-      <Space className={styles.helper}>
+      <div className="panel" dangerouslySetInnerHTML={{ __html: mermaidSVG }} />
+      <Space className="helper">
         <Dropdown overlay={menu} placement="topLeft" arrow>
           <Button icon={<BarsOutlined />} type="primary" />
         </Dropdown>
       </Space>
-      <Space className={styles.operation}>
+      <Space className="operation">
         <Button
           onClick={handleClickDownload}
           icon={<DownloadOutlined />}
