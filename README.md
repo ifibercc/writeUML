@@ -2,10 +2,10 @@
 <h1 align="center">WriteUML</h1>
 <p align="center">🍭 A live preview mermaid editor.</p>
 <p align="center">
-![](https://img.shields.io/github/issues/ifibercc/writeUML)
-![](https://img.shields.io/github/forks/ifibercc/writeUML)
-![](https://img.shields.io/github/stars/ifibercc/writeUML)
-![](https://img.shields.io/github/license/ifibercc/writeUML)
+  <img src="https://img.shields.io/github/issues/ifibercc/writeUML" />
+  <img src="https://img.shields.io/github/forks/ifibercc/writeUML" />
+  <img src="https://img.shields.io/github/stars/ifibercc/writeUML" />
+  <img src="https://img.shields.io/github/license/ifibercc/writeUML" />
 </p>
 
 ## Preview
