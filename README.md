@@ -5,7 +5,7 @@ A live preview mermaid editor.
 ![preview](https://github.com/ifibercc/writeUML/blob/master/public/preview.jpg)
 
 ## Download
-- [Mac](https://gw.alipayobjects.com/os/bmw-prod/19e0e01e-a802-40ad-bba4-17048bf817cd.dmg)
+- [Mac](https://github.com/ifibercc/writeUML/releases)
 - Win
 
 ## Reference
