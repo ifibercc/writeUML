@@ -1,13 +1,13 @@
 {
   "name": "write-uml",
   "productName": "writeUML",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Live mermaid editor",
   "main": "./main.prod.js",
   "author": {
-    "name": "Electron React Boilerplate Maintainers",
-    "email": "electronreactboilerplate@gmail.com",
-    "url": "https://github.com/electron-react-boilerplate"
+    "name": "Fitz",
+    "email": "ifibercc@gmail.com",
+    "url": "https://github.com/ifibercc"
   },
   "scripts": {
     "electron-rebuild": "node -r ../internals/scripts/BabelRegister.js ../internals/scripts/ElectronRebuild.js",
